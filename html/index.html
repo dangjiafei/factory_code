@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>首页 - 趣学术</title>
+    <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+    <!-- 加载公共组件的脚本 -->
+    <script>
+        // 动态加载公共组件
+        async function loadComponents() {
+            // 加载顶部导航栏
+            const headerResponse = await fetch('components/header.html');
+            const headerHtml = await headerResponse.text();
+            document.getElementById('header-placeholder').innerHTML = headerHtml;
+            
+            // 加载左侧侧边栏
+            const sidebarResponse = await fetch('components/sidebar.html');
+            const sidebarHtml = await sidebarResponse.text();
+            document.getElementById('sidebar-placeholder').innerHTML = sidebarHtml;
+            
+            // 加载完成后，初始化菜单交互
+            initializeMenu();
+            
+            // 初始化AI轮播文字功能
+            if (typeof initAICarousel === 'function') {
+                initAICarousel();
+            }
+        }
+        
+        // 页面加载完成后执行
+        document.addEventListener('DOMContentLoaded', loadComponents);
+    </script>
+    
+    <!-- 顶部导航栏占位符 -->
+    <div id="header-placeholder"></div>
+
+    <!-- 主体布局 -->
+    <div class="main-container">
+        <!-- 左侧侧边栏占位符 -->
+        <div id="sidebar-placeholder"></div>
+
+        <!-- 右侧主要内容区域 -->
+        <main class="content-area">
+            <!-- 欢迎信息 -->
+            <div class="welcome-section">
+                
+                <p class="welcome-text">晚上好，欢迎回来！这是您的学术任务概览</p>
+            </div>
+
+            <!-- 核心数据统计卡片 -->
+            <div class="dashboard-stats">
+                <div class="stat-card">
+                    
+                    <div class="stat-content">
+                        <div class="stat-label">进行中的任务</div>
+                        <div class="stat-value">24</div>
+                        <div class="stat-change">+3 较上周</div>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    
+                    <div class="stat-content">
+                        <div class="stat-label">待分配委托</div>
+                        <div class="stat-value">12</div>
+                        <div class="stat-change negative">-2 较上周</div>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    
+                    <div class="stat-content">
+                        <div class="stat-label">学术任务完成率</div>
+                        <div class="stat-value">78%</div>
+                        <div class="stat-change">+5% 较上周</div>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    
+                    <div class="stat-content">
+                        <div class="stat-label">本月学术活动</div>
+                        <div class="stat-value">18</div>
+                        <div class="stat-change">+6 较上月</div>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    
+                    <div class="stat-content">
+                        <div class="stat-label">活跃代表数</div>
+                        <div class="stat-value">31</div>
+                        <div class="stat-change">+3% 较上周</div>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    
+                    <div class="stat-content">
+                        <div class="stat-label">新增绑定医生数</div>
+                        <div class="stat-value">256</div>
+                        <div class="stat-change">+42 较上周</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 数据可视化区域 -->
+            <div class="visualization-section">
+                <!-- 任务进度图表 -->
+                <div class="chart-card">
+                    <div class="section-header">
+                        <h2>学术任务进度</h2>
+                        <div class="section-actions">
+                            <select class="time-filter">
+                                <option>本周</option>
+                                <option>本月</option>
+                                <option>本季度</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="chart-container">
+                        <div class="progress-chart">
+                            <div class="progress-item">
+                                <div class="progress-info">
+                                    <div class="progress-title">深度调研</div>
+                                    <div class="progress-percentage">85%</div>
+                                </div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 85%; background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);"></div>
+                                </div>
+                            </div>
+                            <div class="progress-item">
+                                <div class="progress-info">
+                                    <div class="progress-title">科室会</div>
+                                    <div class="progress-percentage">65%</div>
+                                </div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 65%; background: linear-gradient(90deg, #f093fb 0%, #f5576c 100%);"></div>
+                                </div>
+                            </div>
+                            <div class="progress-item">
+                                <div class="progress-info">
+                                    <div class="progress-title">学术讲座</div>
+                                    <div class="progress-percentage">92%</div>
+                                </div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 92%; background: linear-gradient(90deg, #4facfe 0%, #00f2fe 100%);"></div>
+                                </div>
+                            </div>
+                            <div class="progress-item">
+                                <div class="progress-info">
+                                    <div class="progress-title">病例收集</div>
+                                    <div class="progress-percentage">45%</div>
+                                </div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 45%; background: linear-gradient(90deg, #43e97b 0%, #38f9d7 100%);"></div>
+                                </div>
+                            </div>
+                            <div class="progress-item">
+                                <div class="progress-info">
+                                    <div class="progress-title">文献查阅</div>
+                                    <div class="progress-percentage">78%</div>
+                                </div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 78%; background: linear-gradient(90deg, #fa709a 0%, #fee140 100%);"></div>
+                                </div>
+                            </div>
+                            <div class="progress-item">
+                                <div class="progress-info">
+                                    <div class="progress-title">数据分析</div>
+                                    <div class="progress-percentage">55%</div>
+                                </div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 55%; background: linear-gradient(90deg, #30cfd0 0%, #330867 100%);"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 委托情况统计 -->
+                <div class="chart-card">
+                    <div class="section-header">
+                        <h2>委托情况分布</h2>
+                    </div>
+                    <div class="chart-container">
+                        <div class="delegation-stats">
+                            <div class="delegation-item">
+                                <div class="delegation-circle">
+                                    <div class="circle-inner" style="--percentage: 60;"></div>
+                                    <div class="circle-text">已完成</div>
+                                    <div class="circle-number">60%</div>
+                                </div>
+                            </div>
+                            <div class="delegation-item">
+                                <div class="delegation-circle">
+                                    <div class="circle-inner" style="--percentage: 25;"></div>
+                                    <div class="circle-text">进行中</div>
+                                    <div class="circle-number">25%</div>
+                                </div>
+                            </div>
+                            <div class="delegation-item">
+                                <div class="delegation-circle">
+                                    <div class="circle-inner" style="--percentage: 15;"></div>
+                                    <div class="circle-text">待分配</div>
+                                    <div class="circle-number">15%</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 月度活动趋势 -->
+                <div class="chart-card">
+                    <div class="section-header">
+                        <h2>月度活动趋势</h2>
+                    </div>
+                    <div class="chart-container">
+                        <div class="trend-chart">
+                            <div class="trend-item">
+                                <div class="trend-label">Jan</div>
+                                <div class="trend-bar" style="height: 65%; background: var(--primary-color);"></div>
+                            </div>
+                            <div class="trend-item">
+                                <div class="trend-label">Feb</div>
+                                <div class="trend-bar" style="height: 85%; background: var(--primary-color);"></div>
+                            </div>
+                            <div class="trend-item">
+                                <div class="trend-label">Mar</div>
+                                <div class="trend-bar" style="height: 72%; background: var(--primary-color);"></div>
+                            </div>
+                            <div class="trend-item">
+                                <div class="trend-label">Apr</div>
+                                <div class="trend-bar" style="height: 90%; background: var(--primary-color);"></div>
+                            </div>
+                            <div class="trend-item">
+                                <div class="trend-label">May</div>
+                                <div class="trend-bar" style="height: 78%; background: var(--primary-color);"></div>
+                            </div>
+                            <div class="trend-item">
+                                <div class="trend-label">Jun</div>
+                                <div class="trend-bar" style="height: 88%; background: var(--primary-color);"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 任务详情区域 -->
+            <div class="details-section">
+                <!-- 待办任务列表 -->
+                <div class="tasks-card">
+                    <div class="section-header">
+                        <h2>待办任务</h2>
+                        <div class="section-actions">
+                            <button class="view-all-btn">查看全部</button>
+                        </div>
+                    </div>
+                    <div class="todo-list">
+                        <div class="todo-item">
+                            <div class="todo-checkbox"><input type="checkbox"></div>
+                            <div class="todo-content">
+                                <div class="todo-title">完成渠道科创始组深度调研</div>
+                                <div class="todo-meta">
+                                    <span class="todo-type">深度调研</span>
+                                    <span class="todo-deadline">截止: 2024-02-15</span>
+                                </div>
+                            </div>
+                            <div class="todo-priority high"></div>
+                        </div>
+                        <div class="todo-item">
+                            <div class="todo-checkbox"><input type="checkbox"></div>
+                            <div class="todo-content">
+                                <div class="todo-title">分配3月份科室会任务</div>
+                                <div class="todo-meta">
+                                    <span class="todo-type">科室会</span>
+                                    <span class="todo-deadline">截止: 2024-02-20</span>
+                                </div>
+                            </div>
+                            <div class="todo-priority medium"></div>
+                        </div>
+                        <div class="todo-item">
+                            <div class="todo-checkbox"><input type="checkbox"></div>
+                            <div class="todo-content">
+                                <div class="todo-title">整理医生反馈数据</div>
+                                <div class="todo-meta">
+                                    <span class="todo-type">数据分析</span>
+                                    <span class="todo-deadline">截止: 2024-02-18</span>
+                                </div>
+                            </div>
+                            <div class="todo-priority high"></div>
+                        </div>
+                        <div class="todo-item">
+                            <div class="todo-checkbox"><input type="checkbox"></div>
+                            <div class="todo-content">
+                                <div class="todo-title">准备4月份学术活动计划</div>
+                                <div class="todo-meta">
+                                    <span class="todo-type">活动策划</span>
+                                    <span class="todo-deadline">截止: 2024-02-25</span>
+                                </div>
+                            </div>
+                            <div class="todo-priority medium"></div>
+                        </div>
+                        <div class="todo-item">
+                            <div class="todo-checkbox"><input type="checkbox"></div>
+                            <div class="todo-content">
+                                <div class="todo-title">更新学术资料库</div>
+                                <div class="todo-meta">
+                                    <span class="todo-type">资料管理</span>
+                                    <span class="todo-deadline">截止: 2024-02-17</span>
+                                </div>
+                            </div>
+                            <div class="todo-priority low"></div>
+                        </div>
+                        <div class="todo-item">
+                            <div class="todo-checkbox"><input type="checkbox"></div>
+                            <div class="todo-content">
+                                <div class="todo-title">撰写2月份学术总结</div>
+                                <div class="todo-meta">
+                                    <span class="todo-type">总结报告</span>
+                                    <span class="todo-deadline">截止: 2024-02-28</span>
+                                </div>
+                            </div>
+                            <div class="todo-priority medium"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 学术活动日历 -->
+                <div class="calendar-card">
+                    <div class="section-header">
+                        <h2>近期学术活动</h2>
+                        <div class="section-actions">
+                            <button class="more-btn">查看日历</button>
+                        </div>
+                    </div>
+                    <div class="activity-list">
+                        <div class="activity-item">
+                            <div class="activity-date">
+                                <div class="date-day">15</div>
+                                <div class="date-month">Feb</div>
+                            </div>
+                            <div class="activity-content">
+                                <div class="activity-title">神经内科学术讲座</div>
+                                <div class="activity-location">北京协和医院</div>
+                                <div class="activity-time">14:00 - 16:00</div>
+                            </div>
+                            <div class="activity-type"><span class="activity-tag">讲座</span></div>
+                        </div>
+                        <div class="activity-item">
+                            <div class="activity-date">
+                                <div class="date-day">18</div>
+                                <div class="date-month">Feb</div>
+                            </div>
+                            <div class="activity-content">
+                                <div class="activity-title">心内科病例讨论会</div>
+                                <div class="activity-location">上海瑞金医院</div>
+                                <div class="activity-time">09:30 - 11:30</div>
+                            </div>
+                            <div class="activity-type"><span class="activity-tag">病例讨论</span></div>
+                        </div>
+                        <div class="activity-item">
+                            <div class="activity-date">
+                                <div class="date-day">22</div>
+                                <div class="date-month">Feb</div>
+                            </div>
+                            <div class="activity-content">
+                                <div class="activity-title">内分泌科深度调研</div>
+                                <div class="activity-location">广州中山医院</div>
+                                <div class="activity-time">13:30 - 17:00</div>
+                            </div>
+                            <div class="activity-type"><span class="activity-tag">调研</span></div>
+                        </div>
+                        <div class="activity-item">
+                            <div class="activity-date">
+                                <div class="date-day">25</div>
+                                <div class="date-month">Feb</div>
+                            </div>
+                            <div class="activity-content">
+                                <div class="activity-title">呼吸科文献分享会</div>
+                                <div class="activity-location">线上会议</div>
+                                <div class="activity-time">15:00 - 16:30</div>
+                            </div>
+                            <div class="activity-type"><span class="activity-tag">分享会</span></div>
+                        </div>
+                        <div class="activity-item">
+                            <div class="activity-date">
+                                <div class="date-day">28</div>
+                                <div class="date-month">Feb</div>
+                            </div>
+                            <div class="activity-content">
+                                <div class="activity-title">消化科学术沙龙</div>
+                                <div class="activity-location">北京友谊医院</div>
+                                <div class="activity-time">16:00 - 18:00</div>
+                            </div>
+                            <div class="activity-type"><span class="activity-tag">沙龙</span></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 代表任务统计 -->
+                <div class="stats-card-small">
+                    <div class="section-header">
+                        <h2>代表任务统计</h2>
+                    </div>
+                    <div class="small-stats-grid">
+                        <div class="small-stat-item">
+                            <div class="small-stat-label">总代表数</div>
+                            <div class="small-stat-value">128</div>
+                        </div>
+                        <div class="small-stat-item">
+                            <div class="small-stat-label">活跃代表</div>
+                            <div class="small-stat-value">96</div>
+                        </div>
+                        <div class="small-stat-item">
+                            <div class="small-stat-label">平均完成率</div>
+                            <div class="small-stat-value">82%</div>
+                        </div>
+                        <div class="small-stat-item">
+                            <div class="small-stat-label">待完成任务</div>
+                            <div class="small-stat-value">156</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 组织统计 -->
+                <div class="stats-card-small">
+                    <div class="section-header">
+                        <h2>组织统计</h2>
+                    </div>
+                    <div class="organization-stats">
+                        <div class="org-stat-item">
+                            <div class="org-stat-label">合作医院</div>
+                            <div class="org-stat-value">28</div>
+                        </div>
+                        <div class="org-stat-item">
+                            <div class="org-stat-label">覆盖科室</div>
+                            <div class="org-stat-value">45</div>
+                        </div>
+                        <div class="org-stat-item">
+                            <div class="org-stat-label">参与医生</div>
+                            <div class="org-stat-value">892</div>
+                        </div>
+                        <div class="org-stat-item">
+                            <div class="org-stat-label">本月新增</div>
+                            <div class="org-stat-value">35</div>
+                        </div>
+                        <div class="org-stat-item">
+                            <div class="org-stat-label">学术点</div>
+                            <div class="org-stat-value">126</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 学术跟进情况 -->
+            <div class="followup-section">
+                <div class="section-header">
+                    <h2>学术跟进情况</h2>
+                    <div class="section-actions">
+                        <button class="export-btn">导出数据</button>
+                    </div>
+                </div>
+                <div class="followup-table">
+                    <div class="table-header">
+                        <div class="table-col">医生姓名</div>
+                        <div class="table-col">科室</div>
+                        <div class="table-col">跟进状态</div>
+                        <div class="table-col">最近跟进</div>
+                        <div class="table-col">下次跟进</div>
+                        <div class="table-col">跟进人</div>
+                        <div class="table-col">操作</div>
+                    </div>
+                    <div class="table-row">
+                        <div class="table-col">李医生</div>
+                        <div class="table-col">神经内科</div>
+                        <div class="table-col"><span class="status-tag active">活跃</span></div>
+                        <div class="table-col">2024-02-10</div>
+                        <div class="table-col">2024-02-24</div>
+                        <div class="table-col">张代表</div>
+                        <div class="table-col"><button class="action-btn">查看详情</button></div>
+                    </div>
+                    <div class="table-row">
+                        <div class="table-col">王医生</div>
+                        <div class="table-col">心内科</div>
+                        <div class="table-col"><span class="status-tag pending">待跟进</span></div>
+                        <div class="table-col">2024-02-05</div>
+                        <div class="table-col">2024-02-17</div>
+                        <div class="table-col">李代表</div>
+                        <div class="table-col"><button class="action-btn">查看详情</button></div>
+                    </div>
+                    <div class="table-row">
+                        <div class="table-col">赵医生</div>
+                        <div class="table-col">内分泌科</div>
+                        <div class="table-col"><span class="status-tag active">活跃</span></div>
+                        <div class="table-col">2024-02-12</div>
+                        <div class="table-col">2024-02-26</div>
+                        <div class="table-col">刘代表</div>
+                        <div class="table-col"><button class="action-btn">查看详情</button></div>
+                    </div>
+                    <div class="table-row">
+                        <div class="table-col">孙医生</div>
+                        <div class="table-col">呼吸内科</div>
+                        <div class="table-col"><span class="status-tag inactive">暂停</span></div>
+                        <div class="table-col">2024-01-20</div>
+                        <div class="table-col">-</div>
+                        <div class="table-col">周代表</div>
+                        <div class="table-col"><button class="action-btn">查看详情</button></div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- 加载动画 -->
+    <div class="loading" id="loading" style="display: none;">
+        <div class="loading-spinner"></div>
+        <p>AI正在思考...</p>
+    </div>
+
+    <!-- 公共JS文件 -->
+    <script src="../js/menu.js"></script>
+    <script src="../js/script.js"></script>
+</body>
+</html>
