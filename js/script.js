@@ -556,19 +556,22 @@ window.addEventListener('DOMContentLoaded', () => {
     }
     
     // 组织架构树功能
-    const treeNodes = document.querySelectorAll('.tree-node-header');
-    treeNodes.forEach(node => {
-        node.addEventListener('click', () => {
-            // 切换当前节点的激活状态
-            node.classList.toggle('active');
-            
-            // 查找子节点并切换显示状态
-            const children = node.nextElementSibling;
-            if (children && children.classList.contains('tree-children')) {
-                children.classList.toggle('show');
-            }
-        });
+const treeNodes = document.querySelectorAll('.tree-node-header');
+treeNodes.forEach(node => {
+    node.addEventListener('click', () => {
+        // 移除所有节点的激活状态
+        treeNodes.forEach(n => n.classList.remove('active'));
+        
+        // 为当前节点添加激活状态
+        node.classList.add('active');
+        
+        // 查找子节点并切换显示状态
+        const children = node.nextElementSibling;
+        if (children && children.classList.contains('tree-children')) {
+            children.classList.toggle('show');
+        }
     });
+});
     
     // AI对话功能按钮事件监听器
     
