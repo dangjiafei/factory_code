@@ -167,7 +167,13 @@
                     <div class="org-teams">
                         <!-- 管理团队 -->
                         <div class="team-section">
-                            <h2 class="section-title">甘松测试药业</h2>
+                            <div class="section-header-top">
+                                <h2 class="section-title">甘松测试药业</h2>
+                                <div class="admin-section">
+                                    <a href="#" class="add-admin-btn">管理员权限</a>
+                                    <a href="#" class="add-admin-btn">+ 新增管理员账号</a>
+                                </div>
+                            </div>
                             <div class="team-table-container">
                                 <table class="team-table">
                                     <thead>
@@ -187,8 +193,7 @@
                                             <td>全部</td>
                                             <td class="action-col">
                                                 <div class="action-buttons-cell">
-                                                    <a href="#" class="edit-btn">编辑</a>
-                                                    <a href="#" class="remove-btn">移除</a>
+                                                    <a href="#" class="action-text edit-text">-</a>
                                                 </div>
                                             </td>
                                         </tr>
@@ -199,8 +204,8 @@
                                             <td>ALL</td>
                                             <td class="action-col">
                                                 <div class="action-buttons-cell">
-                                                    <a href="#" class="edit-btn">编辑</a>
-                                                    <a href="#" class="remove-btn">移除</a>
+                                                    <a href="#" class="action-text edit-text">编辑</a>
+                                                    <a href="#" class="action-text delete-text">删除</a>
                                                 </div>
                                             </td>
                                         </tr>
@@ -211,20 +216,20 @@
                                             <td>ALL</td>
                                             <td class="action-col">
                                                 <div class="action-buttons-cell">
-                                                    <a href="#" class="edit-btn">编辑</a>
-                                                    <a href="#" class="remove-btn">移除</a>
+                                                    <a href="#" class="action-text edit-text">编辑</a>
+                                                    <a href="#" class="action-text delete-text">删除</a>
                                                 </div>
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td>王五123</td>
+                                            <td>甘松</td>
                                             <td>13712345678@163.com</td>
                                             <td>13712345678</td>
                                             <td>ALL</td>
                                             <td class="action-col">
                                                 <div class="action-buttons-cell">
-                                                    <a href="#" class="edit-btn">编辑</a>
-                                                    <a href="#" class="remove-btn">移除</a>
+                                                    <a href="#" class="action-text edit-text">编辑</a>
+                                                    <a href="#" class="action-text delete-text">删除</a>
                                                 </div>
                                             </td>
                                         </tr>
@@ -235,17 +240,15 @@
 
                         <!-- 专家团队 -->
                         <div class="team-section">
-                            <div class="section-header">
-                                <div class="team-actions">
-                                    <div class="tag-filters">
-                                        <a href="#" class="filter-tag active">已绑定</a>
-                                        <a href="#" class="filter-tag">已冻结</a>
-                                    </div>
-                                    <div class="team-buttons">
-                                        <a href="#" class="batch-btn">批量添加</a>
-                                        <a href="#" class="single-btn">添加员工</a>
-                                        <a href="#" class="import-btn">导入数据为Excel表</a>
-                                    </div>
+                            <div class="tabs-and-buttons">
+                                <div class="service-tabs">
+                                    <div class="service-tab active">在职员工</div>
+                                    <div class="service-tab">已冻结</div>
+                                </div>
+                                <div class="action-buttons">
+                                    <button class="action-button">添加员工</button>
+                                    <button class="action-button secondary-button">批量操作</button>
+                                    <button class="action-button secondary-button">导出数据</button>
                                 </div>
                             </div>
                             <div class="team-table-container">
@@ -261,158 +264,80 @@
                                     </thead>
                                     <tbody>
                                         <tr>
-                                            <td>姓名</td>
-                                            <td>中国建设银行-湖北-武汉1</td>
-                                            <td>13882221111</td>
+                                            <td>张伟</td>
+                                            <td>研发部-前端开发组-Web前端团队</td>
+                                            <td>13800138001</td>
                                             <td>34</td>
                                             <td class="action-col">
                                                 <div class="action-buttons-cell">
                                                     <a href="#" class="edit-btn">编辑</a>
-                                                    <a href="#" class="work-btn">工作台</a>
-                                                    <a href="#" class="delete-btn">删除</a>
+                                                    <a href="#" class="work-btn">市场交接</a>
+                                                    <a href="#" class="delete-btn">冻结</a>
                                                 </div>
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td>cxc</td>
-                                            <td>卡普里公司</td>
-                                            <td>13254781654</td>
+                                            <td>李娜</td>
+                                            <td>研发部-后端开发组-Java团队</td>
+                                            <td>13900139002</td>
+                                            <td>12</td>
+                                            <td class="action-col">
+                                                <div class="action-buttons-cell">
+                                                    <a href="#" class="edit-btn">编辑</a>
+                                                    <a href="#" class="work-btn">市场交接</a>
+                                                    <a href="#" class="delete-btn">冻结</a>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>王强</td>
+                                            <td>市场部-品牌推广组</td>
+                                            <td>13700137003</td>
+                                            <td>28</td>
+                                            <td class="action-col">
+                                                <div class="action-buttons-cell">
+                                                    <a href="#" class="edit-btn">编辑</a>
+                                                    <a href="#" class="work-btn">市场交接</a>
+                                                    <a href="#" class="delete-btn">冻结</a>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>赵敏</td>
+                                            <td>销售部-国内销售组</td>
+                                            <td>13600136004</td>
+                                            <td>45</td>
+                                            <td class="action-col">
+                                                <div class="action-buttons-cell">
+                                                    <a href="#" class="edit-btn">编辑</a>
+                                                    <a href="#" class="work-btn">市场交接</a>
+                                                    <a href="#" class="delete-btn">冻结</a>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>陈静</td>
+                                            <td>人力资源部</td>
+                                            <td>13500135005</td>
                                             <td>0</td>
                                             <td class="action-col">
                                                 <div class="action-buttons-cell">
                                                     <a href="#" class="edit-btn">编辑</a>
-                                                    <a href="#" class="work-btn">工作台</a>
-                                                    <a href="#" class="delete-btn">删除</a>
+                                                    <a href="#" class="work-btn">市场交接</a>
+                                                    <a href="#" class="delete-btn">冻结</a>
                                                 </div>
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td>重名</td>
-                                            <td>卡普里公司</td>
-                                            <td>13777771781</td>
-                                            <td>2</td>
-                                            <td class="action-col">
-                                                <div class="action-buttons-cell">
-                                                    <a href="#" class="edit-btn">编辑</a>
-                                                    <a href="#" class="work-btn">工作台</a>
-                                                    <a href="#" class="delete-btn">删除</a>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>孟捷</td>
-                                            <td>卡普里公司</td>
-                                            <td>13846914816</td>
+                                            <td>刘辉</td>
+                                            <td>财务部</td>
+                                            <td>13400134006</td>
                                             <td>0</td>
                                             <td class="action-col">
                                                 <div class="action-buttons-cell">
                                                     <a href="#" class="edit-btn">编辑</a>
-                                                    <a href="#" class="work-btn">工作台</a>
-                                                    <a href="#" class="delete-btn">删除</a>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>田民</td>
-                                            <td>卡普里公司</td>
-                                            <td>13562471222</td>
-                                            <td>1</td>
-                                            <td class="action-col">
-                                                <div class="action-buttons-cell">
-                                                    <a href="#" class="edit-btn">编辑</a>
-                                                    <a href="#" class="work-btn">工作台</a>
-                                                    <a href="#" class="delete-btn">删除</a>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>石家庄赵经理</td>
-                                            <td>卡普里公司</td>
-                                            <td>13217631868</td>
-                                            <td>1</td>
-                                            <td class="action-col">
-                                                <div class="action-buttons-cell">
-                                                    <a href="#" class="edit-btn">编辑</a>
-                                                    <a href="#" class="work-btn">工作台</a>
-                                                    <a href="#" class="delete-btn">删除</a>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>向高高</td>
-                                            <td>华源-三明地区-梅列-医院</td>
-                                            <td>13792371381</td>
-                                            <td>0</td>
-                                            <td class="action-col">
-                                                <div class="action-buttons-cell">
-                                                    <a href="#" class="edit-btn">编辑</a>
-                                                    <a href="#" class="work-btn">工作台</a>
-                                                    <a href="#" class="delete-btn">删除</a>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>张三1</td>
-                                            <td>卡普里公司</td>
-                                            <td>13812345678</td>
-                                            <td>0</td>
-                                            <td class="action-col">
-                                                <div class="action-buttons-cell">
-                                                    <a href="#" class="edit-btn">编辑</a>
-                                                    <a href="#" class="work-btn">工作台</a>
-                                                    <a href="#" class="delete-btn">删除</a>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>李博</td>
-                                            <td>卡普里公司</td>
-                                            <td>13508251234</td>
-                                            <td>0</td>
-                                            <td class="action-col">
-                                                <div class="action-buttons-cell">
-                                                    <a href="#" class="edit-btn">编辑</a>
-                                                    <a href="#" class="work-btn">工作台</a>
-                                                    <a href="#" class="delete-btn">删除</a>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>人</td>
-                                            <td>华源-三明地区-梅列-医院</td>
-                                            <td>13200000000</td>
-                                            <td>0</td>
-                                            <td class="action-col">
-                                                <div class="action-buttons-cell">
-                                                    <a href="#" class="edit-btn">编辑</a>
-                                                    <a href="#" class="work-btn">工作台</a>
-                                                    <a href="#" class="delete-btn">删除</a>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>卡普里0520</td>
-                                            <td>卡普里公司</td>
-                                            <td>13962600123</td>
-                                            <td>0</td>
-                                            <td class="action-col">
-                                                <div class="action-buttons-cell">
-                                                    <a href="#" class="edit-btn">编辑</a>
-                                                    <a href="#" class="work-btn">工作台</a>
-                                                    <a href="#" class="delete-btn">删除</a>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>卡普里0507</td>
-                                            <td>卡普里公司</td>
-                                            <td>13962600300</td>
-                                            <td>0</td>
-                                            <td class="action-col">
-                                                <div class="action-buttons-cell">
-                                                    <a href="#" class="edit-btn">编辑</a>
-                                                    <a href="#" class="work-btn">工作台</a>
-                                                    <a href="#" class="delete-btn">删除</a>
+                                                    <a href="#" class="work-btn">市场交接</a>
+                                                    <a href="#" class="delete-btn">冻结</a>
                                                 </div>
                                             </td>
                                         </tr>
@@ -438,7 +363,30 @@
             document.getElementById('sidebar-placeholder').innerHTML = sidebarHtml;
             initializeMenu();
         }
-        window.addEventListener('DOMContentLoaded', loadComponents);
+        
+        // 服务标签切换功能
+        function initializeServiceTabs() {
+            const serviceTabs = document.querySelectorAll('.service-tab');
+            serviceTabs.forEach(tab => {
+                tab.addEventListener('click', function() {
+                    // 移除所有标签的active类
+                    serviceTabs.forEach(t => t.classList.remove('active'));
+                    // 为当前点击的标签添加active类
+                    this.classList.add('active');
+                    
+                    // 这里可以添加筛选逻辑，根据选中的标签筛选表格数据
+                    const status = this.textContent.trim();
+                    console.log('切换到状态:', status);
+                    // 实际项目中，这里会根据status筛选表格数据
+                });
+            });
+        }
+        
+        window.addEventListener('DOMContentLoaded', function() {
+            loadComponents();
+            // 初始化服务标签切换
+            initializeServiceTabs();
+        });
     </script>
 </body>
 </html>
