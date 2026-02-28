@@ -315,7 +315,7 @@
             <div class="content-card">
                 <!-- 病例征集子标签 -->
                 <div class="record-tabs" id="case-collection-tabs" style="display: none; gap: 12px; margin-bottom: 16px; background-color: #f8fafc; padding: 6px; border-radius: 12px; flex-direction: row;">
-                    <div class="record-tab active">病例互动学术内容</div>
+                    <div class="record-tab active">在线病例互动</div>
                     <div class="record-tab has-badge">病例互动征集活动</div>
                     <div class="record-tab has-badge submission">医生投稿作品库</div>
                 </div>
@@ -458,20 +458,36 @@
                             </div>
                             <div class="filter-item">
                                 <select style="width: 120px;">
+                                    <option>作品状态</option>
+                                    <option>未报名</option>
+                                    <option>待提交作品</option>
+                                    <option>作品审核中</option>
+                                    <option>审核通过待最终确认</option>
+                                    <option>作品已录用</option>
+                                    <option>作品内容不符合要求</option>
+                                    <option>审核未通过</option>
+                                    <option>审核超时</option>
+                                </select>
+                            </div>
+                            <div class="filter-item">
+                                <select style="width: 120px;">
+                                    <option>我的活动</option>
+                                    <option>其他组织分享</option>
+                                    <option>下级组织活动</option>
+                                </select>
+                            </div>
+                            <div class="filter-item">
+                                <select style="width: 120px;">
                                     <option>产品标签</option>
                                     <option>标签1</option>
                                     <option>标签2</option>
                                     <option>标签3</option>
                                 </select>
                             </div>
-                            <div class="filter-item">
-                                <select style="width: 120px;">
-                                    <option>作品状态</option>
-                                    <option>待审核</option>
-                                    <option>已通过</option>
-                                    <option>未通过</option>
-                                </select>
-                            </div>
+                        </div>
+                        <div class="filter-actions">
+                            <button class="action-btn edit">批量操作</button>
+                            <button class="action-btn edit">导出 Excel</button>
                         </div>
                     </div>
                     
@@ -572,7 +588,7 @@
                             </div>
                         </div>
                         <div class="filter-actions">
-                            <button class="action-btn edit" id="batchShareBtn">批量分享</button>
+                            <button class="action-btn edit" id="batchActionBtn">批量操作</button>
                             <button class="upload-btn" onclick="window.location.href='create-case.html?activityId=CASE001'">
                                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                     <line x1="12" y1="5" x2="12" y2="19"></line>
@@ -1129,9 +1145,7 @@
                             <table class="record-table">
                                 <thead>
                                     <tr>
-                                        <th style="width: 40px;">
-                                            <input type="checkbox" id="selectAllCheckbox">
-                                        </th>
+
                                         <th>活动名称</th>
                                         <th>产品标签</th>
                                         <th>互动题目数</th>
@@ -1142,9 +1156,6 @@
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td>
-                                            <input type="checkbox" class="item-checkbox" data-id="INTERACT001">
-                                        </td>
                                         <td>
                                             <div class="material-title">心血管疾病病例讨论</div>
                                             <div class="material-id">ID: INTERACT001</div>
@@ -1162,9 +1173,6 @@
                                     </tr>
                                     <tr>
                                         <td>
-                                            <input type="checkbox" class="item-checkbox" data-id="INTERACT002">
-                                        </td>
-                                        <td>
                                             <div class="material-title">糖尿病并发症管理互动</div>
                                             <div class="material-id">ID: INTERACT002</div>
                                         </td>
@@ -1180,9 +1188,6 @@
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td>
-                                            <input type="checkbox" class="item-checkbox" data-id="INTERACT003">
-                                        </td>
                                         <td>
                                             <div class="material-title">儿科呼吸系统病例互动</div>
                                             <div class="material-id">ID: INTERACT003</div>
@@ -1369,7 +1374,7 @@
                                     <tr>
                                         <th>作品名称</th>
                                         <th>所属活动</th>
-                                        <th>产品名称</th>
+                                        <th>产品标签</th>
                                         <th>作者</th>
                                         <th>报名时间</th>
                                         <th>投稿时间</th>
@@ -1400,6 +1405,7 @@
                                                         <a href="#" class="dropdown-item">内容合适</a>
                                                         <a href="#" class="dropdown-item">内容不合适</a>
                                                         <a href="case-interaction-detail.html" class="dropdown-item">学术传递</a>
+                                                        <a href="#" class="dropdown-item">分享作品</a>
                                                         <a href="#" class="dropdown-item">撤回任务</a>
                                                     </div>
                                                 </div>
@@ -1559,7 +1565,7 @@
                     bar.classList.remove('active');
                 });
                 
-                if (tabText === '病例互动学术内容') {
+                if (tabText === '在线病例互动') {
                     const filterBar = document.querySelector('.case-interaction-filter');
                     if (filterBar) {
                         filterBar.style.display = 'flex';
@@ -1583,7 +1589,7 @@
                 caseSubContents.forEach(content => content.style.display = 'none');
                 
                 // 显示对应的子内容
-                if (tabText === '病例互动学术内容') {
+                if (tabText === '在线病例互动') {
                     document.getElementById('case-interactions').style.display = 'block';
                 } else if (tabText === '病例互动征集活动') {
                     document.getElementById('case-activities').style.display = 'block';
@@ -1948,44 +1954,14 @@
                 });
             }
             
-            // 批量分享功能
-            const batchShareBtn = document.getElementById('batchShareBtn');
-            const selectAllCheckbox = document.getElementById('selectAllCheckbox');
-            const itemCheckboxes = document.querySelectorAll('.item-checkbox');
+            // 批量操作功能
+            const batchActionBtn = document.getElementById('batchActionBtn');
             
-            // 全选/取消全选
-            if (selectAllCheckbox) {
-                selectAllCheckbox.addEventListener('change', function() {
-                    const isChecked = this.checked;
-                    itemCheckboxes.forEach(checkbox => {
-                        checkbox.checked = isChecked;
-                    });
-                });
-            }
-            
-            // 单个复选框变化时更新全选状态
-            itemCheckboxes.forEach(checkbox => {
-                checkbox.addEventListener('change', function() {
-                    const allChecked = Array.from(itemCheckboxes).every(cb => cb.checked);
-                    if (selectAllCheckbox) {
-                        selectAllCheckbox.checked = allChecked;
-                    }
-                });
-            });
-            
-            // 批量分享按钮点击事件
-            if (batchShareBtn) {
-                batchShareBtn.addEventListener('click', function() {
-                    const selectedItems = Array.from(itemCheckboxes).filter(cb => cb.checked).map(cb => cb.dataset.id);
-                    
-                    if (selectedItems.length === 0) {
-                        alert('请至少选择一个活动进行分享');
-                        return;
-                    }
-                    
-                    // 这里可以添加批量分享的逻辑
-                    console.log('批量分享选中的活动:', selectedItems);
-                    alert(`已选择 ${selectedItems.length} 个活动进行批量分享`);
+            // 批量操作按钮点击事件
+            if (batchActionBtn) {
+                batchActionBtn.addEventListener('click', function() {
+                    // 这里可以添加批量操作的逻辑
+                    alert('批量操作功能已触发');
                 });
             }
         });

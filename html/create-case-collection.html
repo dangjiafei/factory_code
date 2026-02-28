@@ -68,263 +68,9 @@
                 questionCountInput.value = value;
             });
             
-            // 智能模板系统
-            const templateBtns = document.querySelectorAll('.template-btn');
             const caseDescription = document.getElementById('case-description');
             const aiGenerateBtn = document.getElementById('ai-generate-btn');
             const aiPrompt = document.getElementById('ai-prompt');
-            
-            // 模板内容
-            const templates = {
-                cardio: `尊敬的心血管领域专家：
-
-【活动背景】
-心血管疾病是全球范围内的主要健康挑战，其发病率和死亡率一直居高不下。随着医学技术的不断进步，心血管领域的诊疗理念和方法也在持续更新。为促进心血管领域的学术交流与临床实践分享，我们特别策划了本次病例征集活动。
-
-【活动目标】
-• 搭建心血管领域学术交流平台
-• 分享临床实践中的典型病例和诊疗经验
-• 探讨心血管疾病的优化诊疗方案
-• 提升学科整体诊疗水平
-
-【征稿内容主题】
-• XXXX
-• XXXX
-• XXXX
-• XXXX
-• XXXX
-
-【内容要求】
-• 病例完整：包含患者基本情况、诊断过程、治疗方案及随访结果
-• 数据支持：提供必要的检查结果和治疗效果数据
-• 学术价值：体现心血管领域的诊疗思路和临床决策
-• 创新视角：鼓励分享具有创新性或特殊意义的病例
-• 隐私保护：确保患者信息完全脱敏
-
-【参与收获】
-• 学术交流：与领域专家深度交流，拓展学术视野
-• 专业认可：优秀病例将获得平台推荐和专家点评
-• 继续教育：提供相关继续教育学分
-• 资源共享：获取平台优质学术资源
-
-【重要日期】
-• 征稿截止：XXXX
-• 专家评审：XXXX
-• 结果公布：XXXX
-• 学术交流：XXXX
-
-我们诚挚邀请您分享临床实践中的宝贵经验，共同为心血管疾病的防治事业贡献力量！`,
-                
-                endocrine: `尊敬的内分泌领域专家：
-
-【活动背景】
-内分泌代谢疾病，尤其是糖尿病、甲状腺疾病等，已成为影响公众健康的重要慢性疾病。随着人口老龄化和生活方式的改变，内分泌代谢疾病的防控形势日益严峻。为推动内分泌领域的学术交流与临床经验分享，我们特举办本次病例征集活动。
-
-【活动目标】
-• 促进内分泌代谢疾病领域的学术交流
-• 分享临床实践中的典型病例和诊疗经验
-• 探讨内分泌代谢疾病的个体化治疗策略
-• 提升学科整体诊疗水平
-
-【征稿内容主题】
-• XXXX
-• XXXX
-• XXXX
-• XXXX
-• XXXX
-
-【内容要求】
-• 病例完整：包含患者基本情况、实验室检查、诊断过程、治疗方案及随访结果
-• 数据详实：提供必要的激素水平、血糖监测等数据
-• 学术价值：体现内分泌领域的诊疗思路和个体化治疗策略
-• 临床启示：强调病例对临床实践的指导意义
-• 隐私保护：确保患者信息完全脱敏
-
-【参与收获】
-• 学术交流：与领域专家深度探讨，碰撞学术思想
-• 专业成长：通过病例分享和点评，提升专业水平
-• 平台展示：优秀病例将在平台展示，获得更多关注
-• 资源获取：优先获取领域最新研究资料和学术动态
-
-【重要日期】
-• 征稿截止：XXXX
-• 专家评审：XXXX
-• 结果公布：XXXX
-• 学术研讨：XXXX
-
-期待您分享临床实践中的宝贵经验，共同推动内分泌代谢疾病诊疗水平的提升！`,
-                
-                respiratory: `尊敬的呼吸系统领域专家：
-
-【活动背景】
-呼吸系统疾病是临床常见疾病，包括慢性阻塞性肺疾病、哮喘、肺炎等多种疾病类型。呼吸系统疾病的发病率高，对患者生活质量影响大，给医疗系统带来沉重负担。为促进呼吸系统领域的学术交流与临床经验分享，我们特举办本次病例征集活动。
-
-【活动目标】
-• 搭建呼吸系统疾病学术交流平台
-• 分享临床实践中的典型病例和诊疗经验
-• 探讨呼吸系统疾病的规范化诊疗方案
-• 推动呼吸系统疾病诊疗技术的创新与应用
-
-【征稿内容主题】
-• XXXX
-• XXXX
-• XXXX
-• XXXX
-• XXXX
-
-【内容要求】
-• 病例完整：包含患者基本情况、影像学资料、肺功能等检查结果
-• 诊疗过程：详细描述诊断思路和治疗方案调整
-• 学术价值：体现呼吸系统疾病的诊疗进展和临床决策
-• 多学科视角：鼓励从多学科角度分析病例
-• 隐私保护：确保患者信息完全脱敏
-
-【参与收获】
-• 学术交流：与同行专家深度交流，拓展学术视野
-• 专业认可：优秀病例将获得专家点评和平台推荐
-• 继续教育：提供国家级继续教育学分
-• 合作机会：有机会与领域专家建立合作关系
-
-【重要日期】
-• 征稿截止：XXXX
-• 专家评审：XXXX
-• 结果公布：XXXX
-• 学术会议：XXXX
-
-期待您分享临床实践中的典型病例，共同探讨呼吸系统疾病的优化诊疗方案！`,
-                
-                neurology: `尊敬的神经系统领域专家：
-
-【活动背景】
-神经系统疾病种类繁多，诊断复杂，治疗难度大。随着神经科学的快速发展，神经系统疾病的诊疗理念和技术也在不断更新。为促进神经系统领域的学术交流与临床经验分享，我们特举办本次病例征集活动。
-
-【活动目标】
-• 促进神经系统疾病领域的学术交流与合作
-• 分享临床实践中的典型病例和诊疗经验
-• 探讨神经系统疾病的精准诊断和个体化治疗
-• 推动神经系统疾病诊疗水平的整体提升
-
-【征稿内容主题】
-• XXXX
-• XXXX
-• XXXX
-• XXXX
-• XXXX
-
-【内容要求】
-• 病例完整：包含患者基本情况、神经系统查体、影像学资料等
-• 诊断思路：详细描述定位定性诊断过程和依据
-• 学术价值：体现神经系统疾病的诊疗进展和临床决策
-• 临床思维：强调病例分析的临床思维过程
-• 隐私保护：确保患者信息完全脱敏
-
-【参与收获】
-• 学术交流：与神经领域专家深度探讨，激发学术灵感
-• 专业成长：通过病例讨论，提升神经系统疾病的诊疗能力
-• 平台展示：优秀病例将在专业平台展示，扩大学术影响力
-• 资源共享：获取领域最新研究进展和诊疗指南
-
-【重要日期】
-• 征稿截止：XXXX
-• 专家评审：XXXX
-• 结果公布：XXXX
-• 学术研讨：XXXX
-
-期待您分享临床实践中的典型病例，共同推动神经系统疾病诊疗水平的提升！`,
-                
-                oncology: `尊敬的肿瘤领域专家：
-
-【活动背景】
-肿瘤学是医学领域发展最为迅速的学科之一，新的治疗手段和理念不断涌现。精准医学、免疫治疗、靶向治疗等新技术的应用，为肿瘤患者带来了新的希望。为促进肿瘤领域的学术交流与临床经验分享，我们特举办本次病例征集活动。
-
-【活动目标】
-• 搭建肿瘤领域学术交流与合作平台
-• 分享肿瘤精准诊疗的典型病例和经验
-• 探讨肿瘤多学科综合治疗的优化策略
-• 推动肿瘤诊疗技术的创新与应用
-
-【征稿内容主题】
-• XXXX
-• XXXX
-• XXXX
-• XXXX
-• XXXX
-
-【内容要求】
-• 病例完整：包含患者基本情况、病理诊断、治疗方案及疗效评估
-• 治疗策略：详细描述治疗方案的制定依据和调整过程
-• 学术价值：体现肿瘤领域的最新治疗理念和临床决策
-• 多学科视角：鼓励从多学科综合治疗角度分析病例
-• 隐私保护：确保患者信息完全脱敏
-
-【参与收获】
-• 学术交流：与肿瘤领域专家深度交流，拓展学术视野
-• 专业认可：优秀病例将获得专家点评和平台推荐
-• 继续教育：提供国家级继续教育学分
-• 合作机会：有机会参与多中心临床研究项目
-
-【重要日期】
-• 征稿截止：XXXX
-• 专家评审：XXXX
-• 结果公布：XXXX
-• 学术峰会：XXXX
-
-期待您分享临床实践中的宝贵经验，共同推动肿瘤诊疗水平的提升！`,
-                
-                pediatrics: `尊敬的儿科领域专家：
-
-【活动背景】
-儿童是祖国的未来，儿科疾病具有其特殊性，需要专业的诊疗理念和方法。儿童的生长发育特点、生理病理特征与成人有显著差异，这对儿科医生提出了更高的专业要求。为促进儿科领域的学术交流与临床经验分享，我们特举办本次病例征集活动。
-
-【活动目标】
-• 促进儿科领域的学术交流与合作
-• 分享儿童疾病诊疗的典型病例和经验
-• 探讨儿童疾病的个体化诊疗策略
-• 提升儿科整体诊疗水平，保障儿童健康
-
-【征稿内容主题】
-• XXXX
-• XXXX
-• XXXX
-• XXXX
-• XXXX
-
-【内容要求】
-• 病例完整：包含患儿基本情况、临床表现、实验室检查、诊断过程及治疗方案
-• 年龄特点：体现不同年龄段儿童的疾病特点和诊疗差异
-• 学术价值：体现儿科领域的诊疗思路和循证医学应用
-• 儿童友好：关注儿童身心健康和家庭需求
-• 隐私保护：确保患儿信息完全脱敏
-
-【参与收获】
-• 学术交流：与儿科专家深度探讨，分享诊疗经验
-• 专业成长：提升儿童疾病的诊疗能力和临床思维
-• 平台展示：优秀病例将获得平台推荐和专家点评
-• 继续教育：提供儿科专业继续教育学分
-
-【重要日期】
-• 征稿截止：XXXX
-• 专家评审：XXXX
-• 结果公布：XXXX
-• 学术论坛：XXXX
-
-期待您分享儿科临床实践中的宝贵经验，共同推动儿童健康事业的发展！`
-            };
-            
-            // 模板按钮点击事件
-            templateBtns.forEach(btn => {
-                btn.addEventListener('click', function() {
-                    // 移除所有模板按钮的active类
-                    templateBtns.forEach(b => b.classList.remove('active'));
-                    // 为当前按钮添加active类
-                    this.classList.add('active');
-                    
-                    // 获取模板类型
-                    const templateType = this.dataset.template;
-                    // 设置模板内容
-                    caseDescription.value = templates[templateType];
-                });
-            });
             
             // AI生成按钮点击事件
             if (aiGenerateBtn) {
@@ -1997,35 +1743,21 @@
                         <div class="form-item full-width">
                             <label for="case-title">活动名称 <span class="required">*</span></label>
                             <input type="text" id="case-title" placeholder="请输入活动名称" required>
-                            <div style="padding-top: 12px; border-top: 1px solid #e2e8f0; margin-top: 16px;"></div>
                         </div>
                     </div>
                     <div class="form-row">
                         <div class="form-item full-width">
                             <label for="case-description">活动详情 <span class="required">*</span></label>
-                            <p class="form-tip" style="color: #667eea; font-size: 13px; margin-top: 6px; margin-bottom: 12px; background-color: #f0f4ff; padding: 10px 12px; border-radius: 6px; display: flex; align-items: center; gap: 8px;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1 .2 2.2 1.5 3.5.7.7 1.3 1.5 1.5 2.5"></path><path d="M9 18h6"></path><path d="M10 22h4"></path></svg> 专业且详细的活动详情，包含活动背景、征稿主题等内容，能更好地吸引医生参与并提升活动影响力</p>
-                            
-                            <!-- 智能模板系统 -->
-                            <div style="margin-bottom: 12px;">
-                                <div style="font-size: 13px; font-weight: 500; margin-bottom: 8px;">智能模板（按医学领域）</div>
-                                <div style="display: flex; gap: 10px; flex-wrap: wrap;">
-                                    <button type="button" class="template-btn" data-template="cardio" style="padding: 8px 16px; font-size: 13px; min-width: 120px; font-weight: normal; color: #374151;">心血管领域</button>
-                                    <button type="button" class="template-btn" data-template="endocrine" style="padding: 8px 16px; font-size: 13px; min-width: 120px; font-weight: normal; color: #374151;">内分泌领域</button>
-                                    <button type="button" class="template-btn" data-template="respiratory" style="padding: 8px 16px; font-size: 13px; min-width: 120px; font-weight: normal; color: #374151;">呼吸系统</button>
-                                    <button type="button" class="template-btn" data-template="neurology" style="padding: 8px 16px; font-size: 13px; min-width: 120px; font-weight: normal; color: #374151;">神经系统</button>
-                                    <button type="button" class="template-btn" data-template="oncology" style="padding: 8px 16px; font-size: 13px; min-width: 120px; font-weight: normal; color: #374151;">肿瘤领域</button>
-                                    <button type="button" class="template-btn" data-template="pediatrics" style="padding: 8px 16px; font-size: 13px; min-width: 120px; font-weight: normal; color: #374151;">儿科领域</button>
-                                </div>
-                            </div>
                             
                             <!-- AI辅助生成 -->
                             <div style="margin-bottom: 12px;">
-                                <div style="font-size: 13px; font-weight: 500; margin-bottom: 8px;">AI辅助生成</div>
                                 <div style="display: flex; gap: 10px; align-items: center;">
-                                    <input type="text" id="ai-prompt" placeholder="输入活动主题关键词，AI将生成内容建议" style="flex: 1; padding: 8px 12px; border: 1px solid #e2e8f0; border-radius: 6px; font-size: 13px;">
+                                    <input type="text" id="ai-prompt" placeholder="输入活动主题关键词，AI将生成相关主题" style="flex: 1; padding: 8px 12px; border: 1px solid #e2e8f0; border-radius: 6px; font-size: 13px;">
                                     <button type="button" id="ai-generate-btn" style="padding: 8px 16px; background-color: #667eea; color: white; border: none; border-radius: 6px; font-size: 13px; cursor: pointer;">AI 生成</button>
                                 </div>
                             </div>
+                            
+                            <p class="form-tip" style="color: #f59e0b; font-size: 13px; margin-top: 6px; margin-bottom: 12px; background-color: #fffbeb; padding: 8px 12px; border-radius: 6px; display: flex; align-items: center; gap: 8px;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg> 提示：AI生成的内容仅供参考，可能存在不准确或不适合的信息，请务必仔细检查并根据实际情况修改。</p>
                             
                             <textarea id="case-description" rows="12" required>尊敬的老师，您好！
 临床病例是医学教育与经验传递的核心载体，而"在线病例互动"能让诊疗思路的分享更具参与感与传播力。深知您在临床一线积累了丰富的病例经验与诊疗智慧，这些宝贵内容不仅能帮助年轻从业者成长，更能通过互动形式让更多同行共同研讨、精进技能。因此，我们诚挚邀请您参与本次在线病例互动创作活动，用互动式病例内容传递专业价值，助力医学知识的生动传播。
@@ -2037,7 +1769,6 @@
 
 您可以结合自身临床专长，任选其一创作"在线病例互动"内容。</textarea>
                             
-                            <div style="padding-top: 12px; border-top: 1px solid #e2e8f0; margin-top: 16px;"></div>
                         </div>
                     </div>
                     <div class="form-row">
