@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>活动管理 - 趣学术</title>
+    <title>学术场景 - 趣学术</title>
     <link rel="stylesheet" href="../css/styles.css">
     <link rel="stylesheet" href="../css/record.css">
     <link rel="stylesheet" href="../css/materials.css">
@@ -293,12 +293,13 @@
             <!-- 服务类型标签 -->
             <div class="service-tabs">
                 <div class="service-tab active">线上科室会</div>
-                <div class="service-tab">在线病例互动</div>
+                <div class="service-tab">病例互动</div>
+                <div class="service-tab has-badge">在线互动病例</div>
                 <div class="service-tab">定向直播</div>
                 <div class="service-tab">多人会议</div>
                 <div class="service-tab">学术拜访</div>
                 <div class="service-tab has-badge">医学播客</div>
-                <div class="service-tab has-badge">专家评审</div>
+                <div class="service-tab">专家评审</div>
                 <!-- 占位元素用于右对齐 -->
                 <div style="flex-grow: 1;"></div>
                 <!-- 公共资源库按钮 -->
@@ -313,10 +314,9 @@
             </div>
 
             <div class="content-card">
-                <!-- 病例征集子标签 -->
-                <div class="record-tabs" id="case-collection-tabs" style="display: none; gap: 12px; margin-bottom: 16px; background-color: #f8fafc; padding: 6px; border-radius: 12px; flex-direction: row;">
-                    <div class="record-tab active">在线病例互动</div>
-                    <div class="record-tab has-badge">病例互动征集活动</div>
+                <!-- 在线互动病例子标签 -->
+                <div class="record-tabs" id="online-interaction-case-tabs" style="gap: 12px; margin-bottom: 16px; background-color: #f8fafc; padding: 6px; border-radius: 12px; flex-direction: row; display: none;">
+                    <div class="record-tab active">互动病例征集活动</div>
                     <div class="record-tab has-badge submission">医生投稿作品库</div>
                 </div>
                 
@@ -445,7 +445,7 @@
                                     <line x1="12" y1="5" x2="12" y2="19"></line>
                                     <line x1="5" y1="12" x2="19" y2="12"></line>
                                 </svg>
-                                新建内容征集活动
+                                新建征集活动
                             </button>
                         </div>
                     </div>
@@ -1226,9 +1226,13 @@
                             </div>
                         </div>
                     </div>
+                </div>
+                
+                <!-- 在线互动病例内容 -->
+                <div id="content-online-interaction-case" class="tab-content" style="display: none;">
                     
                     <!-- 病例活动内容 -->
-                    <div class="case-sub-content" id="case-activities" style="display: none;">
+                    <div class="case-sub-content active" id="case-activities">
                         <!-- 病例征集列表 -->
                         <div class="table-container">
                             <table class="record-table">
@@ -1535,7 +1539,8 @@
         // 标签页内容映射
         const tabContentMap = {
             '线上科室会': 'content-online-meeting',
-            '在线病例互动': 'content-case-collection',
+            '病例互动': 'content-case-collection',
+            '在线互动病例': 'content-online-interaction-case',
             '定向直播': 'content-targeted-live',
             '多人会议': 'content-multi-meeting',
             '学术拜访': 'content-academic-visit',
@@ -1571,7 +1576,39 @@
                         filterBar.style.display = 'flex';
                         filterBar.classList.add('active');
                     }
-                } else if (tabText === '病例互动征集活动') {
+                }
+                
+                // 隐藏所有子内容
+                caseSubContents.forEach(content => content.style.display = 'none');
+                
+                // 显示对应的子内容
+                if (tabText === '在线病例互动') {
+                    document.getElementById('case-interactions').style.display = 'block';
+                }
+            });
+        });
+        
+        // 在线互动病例子标签切换
+        const onlineInteractionCaseTabs = document.querySelectorAll('#online-interaction-case-tabs .record-tab');
+        onlineInteractionCaseTabs.forEach(tab => {
+            tab.addEventListener('click', function() {
+                // 移除所有子标签的active类
+                onlineInteractionCaseTabs.forEach(t => t.classList.remove('active'));
+                
+                // 为当前子标签添加active类
+                this.classList.add('active');
+                
+                // 获取当前选中的子标签文本
+                const tabText = this.textContent;
+                
+                // 切换筛选栏（功能区）
+                const filterBars = document.querySelectorAll('.filter-bar.case-collection-filter');
+                filterBars.forEach(bar => {
+                    bar.style.display = 'none';
+                    bar.classList.remove('active');
+                });
+                
+                if (tabText === '互动病例征集活动') {
                     const filterBar = document.querySelector('.case-activity-filter');
                     if (filterBar) {
                         filterBar.style.display = 'flex';
@@ -1586,12 +1623,11 @@
                 }
                 
                 // 隐藏所有子内容
+                const caseSubContents = document.querySelectorAll('.case-sub-content');
                 caseSubContents.forEach(content => content.style.display = 'none');
                 
                 // 显示对应的子内容
-                if (tabText === '在线病例互动') {
-                    document.getElementById('case-interactions').style.display = 'block';
-                } else if (tabText === '病例互动征集活动') {
+                if (tabText === '互动病例征集活动') {
                     document.getElementById('case-activities').style.display = 'block';
                 } else if (tabText === '医生投稿作品库') {
                     document.getElementById('case-works').style.display = 'block';
@@ -1607,12 +1643,13 @@
                 // 获取当前选中的服务标签文本
                 const tabText = tab.textContent.trim();
                 
-                // 显示/隐藏病例征集子标签
-                const caseCollectionTabs = document.getElementById('case-collection-tabs');
-                if (tabText === '在线病例互动') {
-                    caseCollectionTabs.style.display = 'flex';
+                // 显示/隐藏在线互动病例子标签
+                const onlineInteractionCaseTabs = document.getElementById('online-interaction-case-tabs');
+                
+                if (tabText === '在线互动病例') {
+                    onlineInteractionCaseTabs.style.display = 'flex';
                 } else {
-                    caseCollectionTabs.style.display = 'none';
+                    onlineInteractionCaseTabs.style.display = 'none';
                 }
                 
                 // 隐藏所有内容区域
@@ -1639,7 +1676,8 @@
                 // 显示对应的筛选栏
                 const filterBarMap = {
                     '线上科室会': 'online-meeting-filter',
-                    '在线病例互动': 'case-activity-filter',
+                    '病例互动': 'case-activity-filter',
+                    '在线互动病例': 'case-activity-filter',
                     '定向直播': 'targeted-live-filter',
                     '多人会议': 'multi-meeting-filter',
                     '学术拜访': 'academic-visit-filter',
@@ -1657,11 +1695,7 @@
                 }
                 
                 // 确保子标签和内容正确显示
-                if (tabText === '在线病例互动') {
-                    const caseTabs = document.querySelectorAll('.record-tab');
-                    caseTabs.forEach(t => t.classList.remove('active'));
-                    caseTabs[0].classList.add('active');
-                    
+                if (tabText === '病例互动') {
                     // 切换筛选栏
                     const filterBars = document.querySelectorAll('.filter-bar.case-collection-filter');
                     filterBars.forEach(bar => {
@@ -1678,6 +1712,23 @@
                     const caseSubContents = document.querySelectorAll('.case-sub-content');
                     caseSubContents.forEach(content => content.style.display = 'none');
                     document.getElementById('case-interactions').style.display = 'block';
+                } else if (tabText === '在线互动病例') {
+                    // 切换筛选栏
+                    const filterBars = document.querySelectorAll('.filter-bar.case-collection-filter');
+                    filterBars.forEach(bar => {
+                        bar.style.display = 'none';
+                        bar.classList.remove('active');
+                    });
+                    const activityFilterBar = document.querySelector('.case-activity-filter');
+                    if (activityFilterBar) {
+                        activityFilterBar.style.display = 'flex';
+                        activityFilterBar.classList.add('active');
+                    }
+                    
+                    // 显示对应内容
+                    const caseSubContents = document.querySelectorAll('.case-sub-content');
+                    caseSubContents.forEach(content => content.style.display = 'none');
+                    document.getElementById('case-activities').style.display = 'block';
                 }
             });
         });

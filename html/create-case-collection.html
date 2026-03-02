@@ -37,14 +37,76 @@
             loadComponents();
             
             const questionCountInput = document.getElementById('interaction-question-count');
-            const radioButtons = document.querySelectorAll('input[name="question-count"]');
+            const questionRangeInput = document.getElementById('interaction-question-range');
+            const settingTypeRadios = document.querySelectorAll('input[name="question-setting-type"]');
+            const quantityRadios = document.querySelectorAll('input[name="question-count"]');
             const customInput = document.getElementById('custom-question-count');
+            const minQuestionInput = document.getElementById('min-question-count');
+            const maxQuestionInput = document.getElementById('max-question-count');
+            const quantitySettings = document.getElementById('quantity-settings');
+            const rangeSettings = document.getElementById('range-settings');
+            const quantityBtn = document.getElementById('quantity-btn');
+            const rangeBtn = document.getElementById('range-btn');
+            const quantityRadio = document.getElementById('quantity-radio');
+            const rangeRadio = document.getElementById('range-radio');
             
             // 设置默认值为5
             questionCountInput.value = '5';
+            questionRangeInput.value = '';
             
-            // 单选按钮点击事件
-            radioButtons.forEach(radio => {
+            // 按钮点击事件
+            quantityBtn.addEventListener('click', function() {
+                // 更新按钮样式
+                quantityBtn.style.backgroundColor = '#667eea';
+                quantityBtn.style.borderColor = '#667eea';
+                quantityBtn.style.color = 'white';
+                rangeBtn.style.backgroundColor = 'white';
+                rangeBtn.style.borderColor = '#e2e8f0';
+                rangeBtn.style.color = '#475569';
+                
+                // 选中对应的单选按钮
+                quantityRadio.checked = true;
+                
+                // 显示/隐藏设置选项
+                quantitySettings.style.display = 'block';
+                rangeSettings.style.display = 'none';
+                
+                // 确保数量选项有默认值
+                const checkedQuantity = document.querySelector('input[name="question-count"]:checked');
+                if (checkedQuantity) {
+                    if (checkedQuantity.value === 'custom') {
+                        if (!customInput.value) customInput.value = '5';
+                        questionCountInput.value = customInput.value;
+                    } else {
+                        questionCountInput.value = checkedQuantity.value;
+                    }
+                }
+            });
+            
+            rangeBtn.addEventListener('click', function() {
+                // 更新按钮样式
+                rangeBtn.style.backgroundColor = '#667eea';
+                rangeBtn.style.borderColor = '#667eea';
+                rangeBtn.style.color = 'white';
+                quantityBtn.style.backgroundColor = 'white';
+                quantityBtn.style.borderColor = '#e2e8f0';
+                quantityBtn.style.color = '#475569';
+                
+                // 选中对应的单选按钮
+                rangeRadio.checked = true;
+                
+                // 显示/隐藏设置选项
+                quantitySettings.style.display = 'none';
+                rangeSettings.style.display = 'block';
+                
+                // 设置默认区间值
+                if (!minQuestionInput.value) minQuestionInput.value = '5';
+                if (!maxQuestionInput.value) maxQuestionInput.value = '10';
+                updateRangeValue();
+            });
+            
+            // 数量选项点击事件
+            quantityRadios.forEach(radio => {
                 radio.addEventListener('change', function() {
                     if (this.value === 'custom') {
                         customInput.style.display = 'inline-block';
@@ -67,6 +129,59 @@
                 this.value = value;
                 questionCountInput.value = value;
             });
+            
+            // 获取区间选项的单选按钮
+            const rangeRadios = document.querySelectorAll('input[name="question-range"]');
+            
+            // 区间选项点击事件
+            rangeRadios.forEach(radio => {
+                radio.addEventListener('change', function() {
+                    if (this.value === 'custom') {
+                        // 显示自定义区间输入框
+                        minQuestionInput.style.display = 'inline-block';
+                        maxQuestionInput.style.display = 'inline-block';
+                        // 设置默认值
+                        if (!minQuestionInput.value) minQuestionInput.value = '5';
+                        if (!maxQuestionInput.value) maxQuestionInput.value = '10';
+                        updateRangeValue();
+                    } else {
+                        // 隐藏自定义区间输入框
+                        minQuestionInput.style.display = 'none';
+                        maxQuestionInput.style.display = 'none';
+                        // 设置区间值
+                        questionRangeInput.value = this.value;
+                    }
+                });
+            });
+            
+            // 区间输入框变化事件
+            function updateRangeValue() {
+                let min = parseInt(minQuestionInput.value) || 5;
+                let max = parseInt(maxQuestionInput.value) || 10;
+                
+                if (min < 5) min = 5;
+                if (max > 20) max = 20;
+                if (min > max) max = min;
+                
+                minQuestionInput.value = min;
+                maxQuestionInput.value = max;
+                questionRangeInput.value = min + '-' + max;
+            }
+            
+            minQuestionInput.addEventListener('input', updateRangeValue);
+            maxQuestionInput.addEventListener('input', updateRangeValue);
+            
+            // 初始化区间设置
+            function initRangeSettings() {
+                // 隐藏自定义区间输入框
+                minQuestionInput.style.display = 'none';
+                maxQuestionInput.style.display = 'none';
+                // 设置默认区间值
+                questionRangeInput.value = '5-10';
+            }
+            
+            // 初始化
+            initRangeSettings();
             
             const caseDescription = document.getElementById('case-description');
             const aiGenerateBtn = document.getElementById('ai-generate-btn');
@@ -1919,27 +2034,65 @@
 
                 <div class="form-row">
                     <div class="form-item full-width">
-                        <label>总题目数量 <span class="required">*</span></label>
-                        <p class="form-tip" style="color: #64748b; font-size: 13px; margin-top: 6px; margin-bottom: 12px;">请设置互动题目数量，报名投稿的用户需要在创作学术内容的过程中加入互动题目，建议设置 5-10 道题目，以确保互动效果</p>
-                        <div style="display: flex; flex-direction: column; gap: 12px;">
-                            <div style="display: flex; gap: 40px; flex-wrap: wrap; align-items: center;">
-                                <label style="display: flex; align-items: center; gap: 8px; cursor: pointer;">
-                                    <input type="radio" name="question-count" value="5" checked style="width: 16px; height: 16px;">
-                                    <span>5道题目</span>
-                                </label>
-                                <label style="display: flex; align-items: center; gap: 8px; cursor: pointer;">
-                                    <input type="radio" name="question-count" value="10" style="width: 16px; height: 16px;">
-                                    <span>10道题目</span>
-                                </label>
-                                <label style="display: flex; align-items: center; gap: 8px; cursor: pointer;">
-                                    <input type="radio" name="question-count" value="custom" style="width: 16px; height: 16px;">
-                                    <div style="display: flex; align-items: center; gap: 8px;">
-                                        <span>自定义题目数量</span>
-                                        <input type="number" id="custom-question-count" min="5" max="20" placeholder="请输入" style="width: 100px; height: 32px; padding: 0 8px;">
-                                    </div>
-                                </label>
+                        <p class="form-tip" style="color: #64748b; font-size: 13px; margin-top: 6px; margin-bottom: 12px;">请选择题目数量的设置方式，报名投稿的用户需要在创作学术内容的过程中加入互动题目</p>
+                        <div style="display: flex; flex-direction: column; gap: 16px;">
+                            <!-- 选择设置方式 - 使用按钮式选择 -->
+                            <div style="display: flex; gap: 16px; flex-wrap: wrap;">
+                                <button type="button" id="quantity-btn" style="padding: 6px 16px; border: 2px solid #667eea; background-color: #667eea; color: white; border-radius: 6px; cursor: pointer; font-size: 13px; font-weight: 500; transition: all 0.3s ease;">按具体数量</button>
+                                <button type="button" id="range-btn" style="padding: 6px 16px; border: 2px solid #e2e8f0; background-color: white; color: #475569; border-radius: 6px; cursor: pointer; font-size: 13px; font-weight: 500; transition: all 0.3s ease;">按数量区间</button>
+                                <!-- 隐藏的单选按钮 -->
+                                <input type="radio" name="question-setting-type" value="quantity" checked style="display: none;" id="quantity-radio">
+                                <input type="radio" name="question-setting-type" value="range" style="display: none;" id="range-radio">
                             </div>
+                            
+                            <!-- 数量设置选项 -->
+                            <div id="quantity-settings" style="display: block;">
+                                <div style="display: flex; gap: 40px; flex-wrap: wrap; align-items: center;">
+                                    <label style="display: flex; align-items: center; gap: 8px; cursor: pointer;">
+                                        <input type="radio" name="question-count" value="5" checked style="width: 16px; height: 16px;">
+                                        <span>5道题目</span>
+                                    </label>
+                                    <label style="display: flex; align-items: center; gap: 8px; cursor: pointer;">
+                                        <input type="radio" name="question-count" value="10" style="width: 16px; height: 16px;">
+                                        <span>10道题目</span>
+                                    </label>
+                                    <label style="display: flex; align-items: center; gap: 8px; cursor: pointer;">
+                                        <input type="radio" name="question-count" value="custom" style="width: 16px; height: 16px;">
+                                        <div style="display: flex; align-items: center; gap: 8px;">
+                                            <span>自定义题目数量</span>
+                                            <input type="number" id="custom-question-count" min="5" max="20" placeholder="请输入" style="width: 100px; height: 32px; padding: 0 8px;">
+                                        </div>
+                                    </label>
+                                </div>
+                            </div>
+                            
+                            <!-- 区间设置选项 -->
+                            <div id="range-settings" style="display: none;">
+                                <div style="display: flex; gap: 40px; flex-wrap: wrap; align-items: center;">
+                                    <label style="display: flex; align-items: center; gap: 8px; cursor: pointer;">
+                                        <input type="radio" name="question-range" value="5-10" checked style="width: 16px; height: 16px;">
+                                        <span>5-10道题目</span>
+                                    </label>
+                                    <label style="display: flex; align-items: center; gap: 8px; cursor: pointer;">
+                                        <input type="radio" name="question-range" value="10-20" style="width: 16px; height: 16px;">
+                                        <span>10-20道题目</span>
+                                    </label>
+                                    <label style="display: flex; align-items: center; gap: 8px; cursor: pointer;">
+                                        <input type="radio" name="question-range" value="custom" style="width: 16px; height: 16px;">
+                                        <div style="display: flex; align-items: center; gap: 8px;">
+                                            <span>自定义区间</span>
+                                            <div style="display: flex; align-items: center; gap: 8px;">
+                                                <input type="number" id="min-question-count" min="5" max="20" placeholder="最小值" style="width: 80px; height: 32px; padding: 0 8px;">
+                                                <span>至</span>
+                                                <input type="number" id="max-question-count" min="5" max="20" placeholder="最大值" style="width: 80px; height: 32px; padding: 0 8px;">
+                                            </div>
+                                        </div>
+                                    </label>
+                                </div>
+                            </div>
+                            
                             <input type="number" id="interaction-question-count" min="5" max="20" placeholder="总题目数量" required style="width: 200px; display: none;">
+                            <input type="text" id="interaction-question-range" placeholder="题目数量区间" required style="width: 200px; display: none;">
                         </div>
                     </div>
                 </div>
