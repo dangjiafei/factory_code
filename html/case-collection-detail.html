@@ -147,9 +147,9 @@
         /* 活动状态标签 */
         .status-badge {
             display: inline-block;
-            padding: 4px 12px;
-            border-radius: 12px;
-            font-size: 0.8rem;
+            padding: 2px 8px;
+            border-radius: 10px;
+            font-size: 0.7rem;
             font-weight: 500;
         }
         .status-badge.active {
@@ -241,39 +241,50 @@
             <!-- 主要内容 -->
             <main class="content-area">
                 <!-- 1. 活动基本信息 -->
-                <div style="margin-bottom: 24px; background-color: white; padding: 20px; border-radius: 8px;">
-                    <!-- 活动名称（放大作为重心） -->
-                    <div style="font-weight: 700; color: #1e293b; font-size: 1.2rem; line-height: 1.3; margin-bottom: 20px;">糖尿病并发症管理病例征集</div>
-                    
-                    <!-- 其他字段依次排列 -->
-                    <div style="display: flex; flex-wrap: wrap; gap: 30px;">
-                        <!-- 产品标签 -->
-                        <div style="min-width: 200px; flex: 0 0 auto;">
-                            <div style="font-size: 0.8rem; color: #64748b; margin-bottom: 6px;">产品标签</div>
-                            <div style="font-weight: 500; color: #2d3748; font-size: 1rem;">盖笛欣</div>
-                        </div>
-                        <!-- 活动时间 -->
-                        <div style="min-width: 250px; flex: 0 0 auto;">
-                            <div style="font-size: 0.8rem; color: #64748b; margin-bottom: 6px;">活动时间</div>
-                            <div style="font-weight: 500; color: #2d3748; font-size: 1rem;">2025-12-01 至 2025-12-31</div>
-                        </div>
-                        <!-- 目标病例数 -->
-                        <div style="min-width: 200px; flex: 0 0 auto;">
-                            <div style="font-size: 0.8rem; color: #64748b; margin-bottom: 6px;">目标病例数</div>
-                            <div style="font-weight: 500; color: #2d3748; font-size: 1rem;">200</div>
-                        </div>
-                        <!-- 活动状态 -->
-                        <div style="min-width: 200px; flex: 0 0 auto;">
-                            <div style="font-size: 0.8rem; color: #64748b; margin-bottom: 6px;">活动状态</div>
-                            <div>
+                <div class="detail-header" style="margin-bottom: 24px; background-color: white; padding: 20px; border-radius: 8px;">
+                    <div class="header-top" style="display: flex; align-items: flex-start; gap: 24px;">
+                        <img src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=medical%20conference%20banner%20with%20diabetes%20theme&image_size=landscape_4_3" alt="活动封面" class="activity-cover" style="width: 200px; height: 120px; border-radius: 8px; object-fit: cover;">
+                        <div class="activity-info" style="flex: 1;">
+                            <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 8px;">
+                                <h1 class="activity-title" style="font-size: 1.2rem; font-weight: 700; color: #1e293b; margin: 0;">糖尿病并发症管理病例征集</h1>
                                 <span class="status-badge active">进行中</span>
                             </div>
-                        </div>
+                            <div class="activity-meta activity-meta-header" style="display: flex; flex-direction: column; gap: 6px; color: #718096;">
+                                <div class="meta-item" style="display: flex; align-items: center; gap: 8px; font-size: 14px;">
+                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                                        <line x1="16" y1="2" x2="16" y2="6"></line>
+                                        <line x1="8" y1="2" x2="8" y2="6"></line>
+                                        <line x1="3" y1="10" x2="21" y2="10"></line>
+                                    </svg>
+                                    <span>产品标签：盖笛欣</span>
+                                </div>
 
-                         <!-- 病例互动要求 -->
-                        <div style="min-width: 200px; flex: 0 0 auto;">
-                            <div style="font-size: 0.8rem; color: #64748b; margin-bottom: 6px;">病例互动要求</div>
-                            <div style="font-weight: 500; color: #2d3748; font-size: 1rem;">5 道题目</div>
+                                <div class="meta-item" style="display: flex; align-items: center; gap: 8px; font-size: 14px;">
+                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+                                        <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+                                    </svg>
+                                    <span>活动时间：2025-12-01 至 2025-12-31</span>
+                                </div>
+                                
+                                <div style="display: flex; align-items: center; gap: 24px; font-size: 14px;">
+                                    <div class="meta-item" style="display: flex; align-items: center; gap: 8px;">
+                                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                            <path d="M22 12h-4l-3 9L9 3l-3 9H2"></path>
+                                        </svg>
+                                        <span>目标征集数：200</span>
+                                    </div>
+                                    <div style="width: 1px; height: 16px; background-color: #e2e8f0;"></div>
+                                    <div class="meta-item" style="display: flex; align-items: center; gap: 8px;">
+                                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                            <circle cx="12" cy="12" r="10"></circle>
+                                            <path d="M8 12l3 3 4-4"></path>
+                                        </svg>
+                                        <span>互动要求：5 道题目</span>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
