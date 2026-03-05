@@ -164,6 +164,10 @@
             background-color: #fef3c7;
             color: #d97706;
         }
+        .status-badge.failed {
+            background-color: #fee2e2;
+            color: #dc2626;
+        }
         /* 返回按钮样式 */
         .back-btn {
             margin-bottom: 0;
@@ -240,6 +244,12 @@
 
             <!-- 主要内容 -->
             <main class="content-area">
+                <!-- 审核失败提示区域 -->
+                <div id="review-failure-reason" style="display: flex; align-items: flex-start; gap: 12px; margin-bottom: 24px; padding: 16px; background-color: #fef2f2; border-radius: 8px;">
+                    <div style="font-weight: 500; color: #dc2626; font-size: 0.95rem; line-height: 1.5; white-space: nowrap;">审核失败原因：</div>
+                    <div style="color: #b91c1c; font-size: 0.95rem; line-height: 1.5; flex: 1;">活动内容不符合平台规范，缺少必要的学术伦理审查说明，请补充相关材料后重新提交。</div>
+                </div>
+
                 <!-- 1. 活动基本信息 -->
                 <div class="detail-header" style="margin-bottom: 24px; background-color: white; padding: 20px; border-radius: 8px;">
                     <div class="header-top" style="display: flex; align-items: flex-start; gap: 24px;">
@@ -247,7 +257,9 @@
                         <div class="activity-info" style="flex: 1;">
                             <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 8px;">
                                 <h1 class="activity-title" style="font-size: 1.2rem; font-weight: 700; color: #1e293b; margin: 0;">糖尿病并发症管理病例征集</h1>
-                                <span class="status-badge active">进行中</span>
+                                <!-- <span class="status-badge active">进行中</span> -->
+                                <!-- 审核失败状态示例 -->
+                                <span class="status-badge failed">审核失败</span>
                             </div>
                             <div class="activity-meta activity-meta-header" style="display: flex; flex-direction: column; gap: 6px; color: #718096;">
                                 <div class="meta-item" style="display: flex; align-items: center; gap: 8px; font-size: 14px;">
@@ -539,21 +551,38 @@
                                         </td>
                                     </tr>
                                     <tr style="transition: background-color 0.3s ease;">
-                                        <td style="padding: 12px;">
+                                        <td style="padding: 12px; border-bottom: 1px solid #e2e8f0;">
                                             <div>心脏瓣膜病外科治疗病例分析</div>
                                             <div style="font-size: 0.8rem; color: #64748b;">ID: 789014</div>
                                         </td>
-                                        <td style="padding: 12px;">王医生</td>
-                                        <td style="padding: 12px;">主任医师</td>
-                                        <td style="padding: 12px;">心血管内科</td>
-                                        <td style="padding: 12px;">
+                                        <td style="padding: 12px; border-bottom: 1px solid #e2e8f0;">王医生</td>
+                                        <td style="padding: 12px; border-bottom: 1px solid #e2e8f0;">主任医师</td>
+                                        <td style="padding: 12px; border-bottom: 1px solid #e2e8f0;">心血管内科</td>
+                                        <td style="padding: 12px; border-bottom: 1px solid #e2e8f0;">
                                             <span style="background-color: #fef3c7; color: #d97706; padding: 4px 8px; border-radius: 12px; font-size: 0.8rem;">待审核</span>
                                         </td>
-                                        <td style="padding: 12px;">2026-03-07 09:45:00</td>
-                                        <td style="padding: 12px;">2/4</td>
-                                        <td style="padding: 12px;">
+                                        <td style="padding: 12px; border-bottom: 1px solid #e2e8f0;">2026-03-07 09:45:00</td>
+                                        <td style="padding: 12px; border-bottom: 1px solid #e2e8f0;">2/4</td>
+                                        <td style="padding: 12px; border-bottom: 1px solid #e2e8f0;">
                                             <button style="color: #10b981; background-color: rgba(16, 185, 129, 0.1); border: 1px solid rgba(16, 185, 129, 0.3); border-radius: 4px; cursor: pointer; font-size: 0.85rem; padding: 4px 8px; margin-right: 6px; transition: all 0.2s ease;">学术传递</button>
                                             <button style="color: #ef4444; background-color: rgba(239, 68, 68, 0.1); border: 1px solid rgba(239, 68, 68, 0.3); border-radius: 4px; cursor: pointer; font-size: 0.85rem; padding: 4px 8px; transition: all 0.2s ease;">撤回任务</button>
+                                        </td>
+                                    </tr>
+                                    <tr style="transition: background-color 0.3s ease;">
+                                        <td style="padding: 12px; border-bottom: 1px solid #e2e8f0;">
+                                            <div>高血压合并糖尿病病例报告</div>
+                                            <div style="font-size: 0.8rem; color: #64748b;">ID: 789015</div>
+                                        </td>
+                                        <td style="padding: 12px; border-bottom: 1px solid #e2e8f0;">赵医生</td>
+                                        <td style="padding: 12px; border-bottom: 1px solid #e2e8f0;">副主任医师</td>
+                                        <td style="padding: 12px; border-bottom: 1px solid #e2e8f0;">内分泌科</td>
+                                        <td style="padding: 12px; border-bottom: 1px solid #e2e8f0;">
+                                            <span style="background-color: #fee2e2; color: #dc2626; padding: 4px 8px; border-radius: 12px; font-size: 0.8rem;">审核失败</span>
+                                        </td>
+                                        <td style="padding: 12px; border-bottom: 1px solid #e2e8f0;">2026-03-08 11:20:00</td>
+                                        <td style="padding: 12px; border-bottom: 1px solid #e2e8f0;">1/5</td>
+                                        <td style="padding: 12px; border-bottom: 1px solid #e2e8f0;">
+                                            <button onclick="showFailureReason('789015')" style="color: #ef4444; background-color: rgba(239, 68, 68, 0.1); border: 1px solid rgba(239, 68, 68, 0.3); border-radius: 4px; cursor: pointer; font-size: 0.85rem; padding: 4px 8px; transition: all 0.2s ease;">查看原因</button>
                                         </td>
                                     </tr>
                                 </tbody>
@@ -588,6 +617,184 @@
             } catch (error) {
                 console.error('加载公共组件失败:', error);
             }
+        }
+
+        // 显示失败原因模态框
+        function showFailureReason(workId) {
+            // 创建模态框元素
+            const modal = document.createElement('div');
+            modal.style.cssText = `
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                z-index: 10000;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                margin: 0;
+                padding: 0;
+                border: none;
+            `;
+            
+            // 创建遮罩层
+            const overlay = document.createElement('div');
+            overlay.style.cssText = `
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background-color: rgba(0, 0, 0, 0.7);
+                backdrop-filter: blur(8px);
+                margin: 0;
+                padding: 0;
+                border: none;
+            `;
+            modal.appendChild(overlay);
+            
+            // 创建模态框内容
+            const modalContent = document.createElement('div');
+            modalContent.style.cssText = `
+                background: white;
+                border-radius: 16px;
+                box-shadow: 0 20px 80px rgba(0, 0, 0, 0.4);
+                width: 400px !important;
+                max-width: 90vw !important;
+                min-width: 300px !important;
+                position: relative;
+                z-index: 10001;
+                overflow: hidden;
+                box-sizing: border-box !important;
+                margin: 0 !important;
+                padding: 0 !important;
+                border: none !important;
+            `;
+            
+            // 模态框头部
+            const modalHeader = document.createElement('div');
+            modalHeader.className = 'modal-header';
+            modalHeader.style.cssText = `
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding: 20px 24px;
+                border-bottom: 1px solid #e0e0e0;
+            `;
+            
+            // 模态框标题
+            const modalTitle = document.createElement('h3');
+            modalTitle.style.cssText = `
+                font-size: 1.1rem;
+                font-weight: 600;
+                color: #1e293b;
+                margin: 0;
+            `;
+            modalTitle.textContent = '审核失败原因';
+            
+            // 关闭图标按钮
+            const closeIconButton = document.createElement('button');
+            closeIconButton.className = 'modal-close';
+            closeIconButton.style.cssText = `
+                background: none;
+                border: none;
+                cursor: pointer;
+                color: #64748b;
+                padding: 4px;
+                border-radius: 4px;
+                transition: all 0.2s ease;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            `;
+            closeIconButton.innerHTML = `
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+            `;
+            closeIconButton.onclick = function() {
+                document.body.removeChild(modal);
+            };
+            
+            // 组装头部
+            modalHeader.appendChild(modalTitle);
+            modalHeader.appendChild(closeIconButton);
+            
+            // 模态框主体
+            const modalBody = document.createElement('div');
+            modalBody.className = 'modal-body';
+            modalBody.style.cssText = `
+                padding: 24px;
+            `;
+            
+            // 失败原因内容
+            const reasonContent = document.createElement('div');
+            reasonContent.style.cssText = `
+                padding: 16px;
+                background-color: #fef2f2;
+                border-radius: 8px;
+                font-size: 0.95rem;
+                line-height: 1.5;
+                color: #b91c1c;
+                word-wrap: break-word;
+                max-width: 100%;
+                box-sizing: border-box;
+            `;
+            
+            // 根据作品ID设置不同的失败原因
+            let reasonText = '';
+            if (workId === '789015') {
+                reasonText = '病例报告缺少患者知情同意书证明，不符合学术伦理要求。请补充相关材料后重新提交。';
+            } else {
+                reasonText = '作品内容不符合平台规范，请根据审核意见修改后重新提交。';
+            }
+            reasonContent.textContent = reasonText;
+            
+            // 组装主体
+            modalBody.appendChild(reasonContent);
+            
+            // 模态框底部
+            const modalFooter = document.createElement('div');
+            modalFooter.className = 'modal-footer';
+            modalFooter.style.cssText = `
+                display: flex;
+                justify-content: flex-end;
+                align-items: center;
+                padding: 16px 24px;
+                border-top: 1px solid #e0e0e0;
+                gap: 10px;
+            `;
+            
+            // 关闭按钮
+            const closeButton = document.createElement('button');
+            closeButton.style.cssText = `
+                padding: 8px 16px;
+                background-color: #667eea;
+                color: white;
+                border: none;
+                border-radius: 6px;
+                font-size: 14px;
+                cursor: pointer;
+                transition: all 0.3s ease;
+            `;
+            closeButton.textContent = '关闭';
+            closeButton.onclick = function() {
+                document.body.removeChild(modal);
+            };
+            
+            // 组装底部
+            modalFooter.appendChild(closeButton);
+            
+            // 组装模态框
+            modalContent.appendChild(modalHeader);
+            modalContent.appendChild(modalBody);
+            modalContent.appendChild(modalFooter);
+            modal.appendChild(modalContent);
+            
+            // 添加到页面
+            document.body.appendChild(modal);
         }
 
         // 初始化页面

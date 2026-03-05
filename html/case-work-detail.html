@@ -1200,6 +1200,11 @@
         <main class="content-area" style="background-color: #f8fafc;">
             <!-- 病例详情容器 -->
             <div class="detail-container">
+                <!-- 审核失败提示区域 -->
+                <div id="review-failure-reason" style="display: flex; align-items: flex-start; gap: 12px; margin-bottom: 24px; padding: 16px; background-color: #fef2f2; border-radius: 8px;">
+                    <div style="font-weight: 500; color: #dc2626; font-size: 0.95rem; line-height: 1.5; white-space: nowrap;">审核失败原因：</div>
+                    <div style="color: #b91c1c; font-size: 0.95rem; line-height: 1.5; flex: 1;">病例内容不符合平台规范，缺少必要的伦理审查说明，请补充相关材料后重新提交。</div>
+                </div>
                 <!-- 病例头部 -->
                 <div class="detail-header">
                     <div class="header-top">
@@ -1207,7 +1212,7 @@
                         <div class="activity-info">
                             <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 8px;">
                                 <h1 class="activity-title">2型糖尿病合并高血压病例报告</h1>
-                                <span class="status-badge submitted">待审核</span>
+                                <span class="status-badge rejected" style="background-color: #fef2f2; color: #dc2626;">审核失败</span>
                             </div>
                             <div class="activity-meta activity-meta-header" style="display: flex; flex-direction: column; gap: 4px;">
                                 <div class="meta-item">
